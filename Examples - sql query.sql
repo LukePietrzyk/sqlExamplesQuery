@@ -76,7 +76,73 @@ WHERE
         WHERE
             hire_date BETWEEN '1989-01-01' AND '2000-01-01');
             
-
             
+-- #9 Show all information about employees who have job title “Assistant Engineer”
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    emp_no IN (SELECT 
+            emp_no
+        FROM
+            titles
+        WHERE
+            title = 'Assistant Engineer');    
+
+-- #10 Create view to show average salary of managers
+
+CREATE VIEW avg_manager_salary AS
+    SELECT 
+        ROUND(AVG(salary), 2) AS avg_salary_managers
+    FROM
+        salaries s
+            JOIN
+        dept_manager dm ON s.emp_no = dm.emp_no;
+        
+-- #11 Show that view       
+
+SELECT * FROM employees.avg_managers_salary;    
+
+-- #12 Show first name and last name of managers 
+
+SELECT 
+    first_name, last_name
+FROM
+    employees e
+WHERE
+    EXISTS( SELECT 
+            *
+        FROM
+            dept_manager dm
+        WHERE
+            dm.emp_no = e.emp_no);
+            
+-- #13 Querys with aggregate functions
+SELECT 
+    MIN(emp_no) AS min_number_emp,
+    MAX(emp_no) AS max_number_emp
+FROM
+    employees;
+
+-- #14 Case statment - check role in organization 
+
+SELECT 
+    e.emp_no,
+    first_name,
+    last_name,
+    CASE
+        WHEN dm.emp_no IS NOT NULL THEN 'It\'s Manager'
+        ELSE 'Employee'
+    END 'Organization role'
+FROM
+    employees e
+        LEFT JOIN
+    dept_manager dm ON dm.emp_no = e.emp_no
+WHERE
+    e.emp_no > 109990
+    
+    
+
             
             
