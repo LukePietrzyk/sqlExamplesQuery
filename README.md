@@ -1,2 +1,2 @@
 # sqlExamplesQuery
-Examples query 
+Experience in Query Language - As part of my professional development, I have actively engaged in learning and applying various query languages in the field of data analysis and database management. My experience includes working with complex queries involving aggregation functions such as MIN,MAX,SUM,AVG, as well SELECT, CASE statements, WHERE clauses, JOIN operations, GROUP BY clauses, HAVING filters, and ORDER BY clauses.
